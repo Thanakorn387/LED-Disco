@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ยืนยันการลบ</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #641818; /* สีพื้นหลังของหน้าเป็นสีดำ */
+            color: #e9ecef; /* สีข้อความเป็นสีขาวนวล */
+        }
+        .container {
+            margin-top: 20px;
+            background-color: #343a40; /* สีพื้นหลังของคอนเทนเนอร์เป็นสีเทาดำ */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+        h1 {
+            color: #e9ecef; /* สีข้อความหัวข้อเป็นสีขาวนวล */
+        }
+        .btn-danger {
+            background-color: #dc3545; /* สีพื้นหลังของปุ่มลบเป็นสีแดง */
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* สีพื้นหลังของปุ่มลบเมื่อวางเมาส์เป็นสีแดงเข้ม */
+            border-color: #bd2130;
+        }
+        .btn-secondary {
+            background-color: #6c757d; /* สีพื้นหลังของปุ่มยกเลิกเป็นสีเทา */
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268; /* สีพื้นหลังของปุ่มยกเลิกเมื่อวางเมาส์เป็นสีเทาเข้ม */
+            border-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">ยืนยันการลบ</h1>
+        <p>คุณแน่ใจหรือไม่ว่าต้องการลบ "{{ movie.title_th }}"?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">ลบ</button>
+            <a href="{% url 'index' %}" class="btn btn-secondary">ยกเลิก</a>
+        </form>
+    </div>
+</body>
+</html>

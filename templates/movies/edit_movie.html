@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>แก้ไขข้อมูลภาพยนตร์หรืออนิเมะ</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #641818; 
+            color: #e9ecef; 
+        }
+        .container {
+            margin-top: 20px;
+            background-color: #343a40; 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+        h1 {
+            color: #e9ecef; 
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; 
+            border-color: #004085;
+        }
+        .btn-secondary {
+            background-color: #6c757d; 
+        }
+        .form-label {
+            color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4 text-center">แก้ไขข้อมูลภาพยนตร์หรืออนิเมะ</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="favorite_order" class="form-label">ลำดับที่ชอบ</label>
+                {{ form.favorite_order }}
+            </div>
+            <div class="form-group">
+                <label for="title_th" class="form-label">ชื่อเรื่องภาษาไทย</label>
+                {{ form.title_th }}
+            </div>
+            <div class="form-group">
+                <label for="title_en" class="form-label">ชื่อเรื่องภาษาอังกฤษ</label>
+                {{ form.title_en }}
+            </div>
+            <div class="form-group">
+                <label for="seasons" class="form-label">จำนวนซีซั่น</label>
+                {{ form.seasons }}
+            </div>
+            <div class="form-group">
+                <label for="viewing_platform" class="form-label">ช่องทางการรับชม</label>
+                {{ form.viewing_platform }}
+            </div>
+            <button type="submit" class="btn btn-primary">บันทึกการแก้ไข</button>
+            <a href="{% url 'index' %}" class="btn btn-secondary">ยกเลิก</a>
+        </form>
+    </div>
+</body>
+</html>

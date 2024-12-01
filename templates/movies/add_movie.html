@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>เพิ่มภาพยนตร์หรืออนิเมะ</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #641818; /* สีพื้นหลังของหน้าเป็นสีดำ */
+            color: #e9ecef; /* สีข้อความเป็นสีขาวนวล */
+        }
+        .container {
+            margin-top: 20px;
+            background-color: #343a40; /* สีพื้นหลังของคอนเทนเนอร์เป็นสีเทาดำ */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+        h1 {
+            color: #e9ecef; /* สีข้อความหัวข้อเป็นสีขาวนวล */
+        }
+        .form-control {
+            background-color: #495057; /* สีพื้นหลังของฟอร์มเป็นสีเทาดำ */
+            color: #e9ecef; /* สีข้อความของฟอร์มเป็นสีขาวนวล */
+            border: 1px solid #6c757d; /* สีกรอบฟอร์มเป็นสีเทา */
+        }
+        .form-control:focus {
+            background-color: #495057;
+            border-color: #007bff; /* เปลี่ยนสีกรอบฟอร์มเมื่อเลือกเป็นสีน้ำเงิน */
+            box-shadow: none; /* ลบเงาของฟอร์มเมื่อเลือก */
+        }
+        .btn-primary {
+            background-color: #007bff; /* สีพื้นหลังของปุ่มเป็นสีน้ำเงิน */
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* สีพื้นหลังของปุ่มเมื่อวางเมาส์เป็นสีน้ำเงินเข้ม */
+            border-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">เพิ่มภาพยนตร์หรืออนิเมะ</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">บันทึก</button>
+        </form>
+    </div>
+</body>
+</html>

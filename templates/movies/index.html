@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>รายการภาพยนตร์และอนิเมะ</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #641818; /* สีพื้นหลังของหน้าเป็นสีดำ */
+            color: #e9ecef; /* สีข้อความเป็นสีขาวนวล */
+        }
+        .container {
+            margin-top: 20px;
+            background-color: #343a40; /* สีพื้นหลังของคอนเทนเนอร์เป็นสีเทาดำ */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+        h1 {
+            color: #e9ecef; /* สีข้อความหัวข้อเป็นสีขาวนวล */
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .thead-dark th {
+            background-color: #495057; /* สีพื้นหลังของหัวตารางเป็นสีเทาดำ */
+            color: #e9ecef; /* สีข้อความหัวตารางเป็นสีขาวนวล */
+        }
+        .table tbody tr:nth-child(even) {
+            background-color: #495057; /* สีพื้นหลังของแถวตารางเป็นสีเทาดำ */
+        }
+        .table tbody tr:nth-child(odd) {
+            background-color: #343a40; /* สีพื้นหลังของแถวตารางเป็นสีเทาดำ */
+        }
+        .table th, .table td {
+            text-align: center;
+            color: #e9ecef; /* สีข้อความของเซลล์เป็นสีขาวนวล */
+        }
+        .btn-primary {
+            background-color: #007bff; /* สีพื้นหลังของปุ่มเพิ่มเป็นสีน้ำเงิน */
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* สีพื้นหลังของปุ่มเพิ่มเมื่อวางเมาส์เป็นสีน้ำเงินเข้ม */
+            border-color: #004085;
+        }
+        .btn-warning {
+            background-color: #ffc107; /* สีพื้นหลังของปุ่มแก้ไขเป็นสีเหลือง */
+            border-color: #ffc107;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800; /* สีพื้นหลังของปุ่มแก้ไขเมื่อวางเมาส์เป็นสีเหลืองเข้ม */
+            border-color: #d39e00;
+        }
+        .btn-danger {
+            background-color: #dc3545; /* สีพื้นหลังของปุ่มลบเป็นสีแดง */
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* สีพื้นหลังของปุ่มลบเมื่อวางเมาส์เป็นสีแดงเข้ม */
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4 text-center">รายการภาพยนตร์และอนิเมะ</h1>
+        
+        <!-- ปุ่มเพิ่มข้อมูล -->
+        <div class="text-right mb-3">
+            <a href="{% url 'add_movie' %}" class="btn btn-primary">เพิ่มภาพยนตร์หรืออนิเมะ</a>
+        </div>
+
+        <!-- ตารางแสดงรายการ -->
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ลำดับที่ชอบ</th>
+                    <th>ชื่อเรื่องภาษาไทย</th>
+                    <th>ชื่อเรื่องภาษาอังกฤษ</th>
+                    <th>จำนวนซีซั่น</th>
+                    <th>ช่องทางการรับชม</th>
+                    <th>การจัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.favorite_order }}</td>
+                    <td>{{ movie.title_th }}</td>
+                    <td>{{ movie.title_en }}</td>
+                    <td>{{ movie.seasons }}</td>
+                    <td>{{ movie.viewing_platform }}</td>
+                    <td>
+                        <!-- ปุ่มแก้ไข -->
+                        <a href="{% url 'edit_movie' movie.id %}" class="btn btn-warning">แก้ไข</a>
+                        <!-- ปุ่มลบ -->
+                        <a href="{% url 'delete_movie' movie.id %}" class="btn btn-danger">ลบ</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">ไม่มีข้อมูล</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
